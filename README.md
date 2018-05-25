@@ -23,7 +23,7 @@ use App\Http\Responders\Post\IndexResponder;
 class PostIndex implements Controller
 {
     /**
-     * View factory for returning views.
+     * The Responder.
      *
      * @var \App\Http\Responders\Post\IndexResponder
      */
