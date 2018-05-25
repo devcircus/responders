@@ -1,0 +1,56 @@
+{
+    "name": "bright-components/responders",
+    "description": "Responder Implementation for Laravel Projects",
+    "version": "0.1.0",
+    "keywords": [
+        "bright-components",
+        "responders"
+    ],
+    "homepage": "https://github.com/bright-components/responders",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Clayton Stone",
+            "email": "clay@phpstage.com",
+            "homepage": "https://codestage.co",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "5.6.*",
+        "illuminate/container": "5.6.*",
+        "illuminate/console": "5.6.*",
+        "illuminate/http": "5.6.*",
+        "illuminate/routing": "5.6.*",
+        "illuminate/view": "5.6.*",
+        "devmarketer/laraflash": "1.3.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BrightComponents\\Responder\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BrightComponents\\Responder\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BrightComponents\\Responder\\ResponderServiceProvider"
+            ]
+        }
+    }
+}

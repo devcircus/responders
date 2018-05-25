@@ -1,0 +1,22 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Http\Request;
+use BrightComponents\Responder\Responder;
+
+class DummyClass extends Responder
+{
+    /**
+     * Send a response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|null  $data
+     *
+     * @return mixed
+     */
+    public function respond(Request $request, $data = null)
+    {
+        //
+    }
+}
