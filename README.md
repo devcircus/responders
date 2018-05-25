@@ -15,6 +15,7 @@ You can install the package via composer:
 ```bash
 composer require bright-components/responders
 ```
+Laravel versions > 5.6.0 will automatically identify and register the service provider.
 
 Then, run:
 ```bash
