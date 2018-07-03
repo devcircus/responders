@@ -11,6 +11,13 @@ use Illuminate\Routing\ResponseFactory as Response;
 abstract class Responder
 {
     /**
+     * The response payload.
+     *
+     * @var mixed
+     */
+    protected $payload;
+
+    /**
      * View factory for returning views.
      *
      * @var \Illuminate\View\Factory
@@ -64,12 +71,23 @@ abstract class Responder
     /**
      * Send a response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|null  $data
-     *
      * @return mixed
      */
-    abstract public function respond(Request $request, $data = null);
+    abstract public function respond();
+
+    /**
+     * Add the payload to the response.
+     *
+     * @param  mixed  $payload
+     *
+     * @return $this
+     */
+    public function withPayload($payload)
+    {
+        $this->payload = $payload;
+
+        return $this;
+    }
 
     /**
      * Send a view response.
