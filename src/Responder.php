@@ -3,40 +3,17 @@
 namespace BrightComponents\Responder;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
 use DevMarketer\LaraFlash\LaraFlash;
-use Illuminate\View\Factory as View;
-use Illuminate\Routing\ResponseFactory as Response;
+use BrightComponents\Common\Payloads\AbstractPayload;
 
 abstract class Responder
 {
     /**
-     * View factory for returning views.
+     * The response payload.
      *
-     * @var \Illuminate\View\Factory
+     * @var mixed
      */
-    protected $view;
-
-    /**
-     * Session store for interacting with session.
-     *
-     * @var \Illuminate\Session\Store
-     */
-    protected $session;
-
-    /**
-     * Response factory for generating responses.
-     *
-     * @var /Illuminate\Contracts\Routing\ResponseFactory
-     */
-    protected $response;
-
-    /**
-     * Redirector for generating redirects.
-     *
-     * @var \Illuminate\Routing\Redirector
-     */
-    protected $redirector;
+    protected $payload;
 
     /**
      * Laraflash for flashing to session.
@@ -48,60 +25,48 @@ abstract class Responder
     /**
      * Construct a new base Responder.
      *
-     * @param  \Illuminate\View\Factory $view
-     * @param  \Illuminate\Contracts\Routing\ResponseFactory $response
-     * @param  \DevMarketer\LaraFlash\LaraFlash $flash
-     * @param  \Illuminate\Routing\Redirector $redirector
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \DevMarketer\LaraFlash\LaraFlash  $flash
      */
-    public function __construct(View $view, Response $response, LaraFlash $flash, Redirector $redirector)
+    public function __construct(Request $request, LaraFlash $flash)
     {
-        $this->view = $view;
+        $this->request = $request;
         $this->flash = $flash;
-        $this->response = $response;
-        $this->redirector = $redirector;
     }
 
     /**
      * Send a response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|null  $data
-     *
      * @return mixed
      */
-    abstract public function respond(Request $request, $data = null);
+    abstract public function respond();
 
     /**
-     * Send a view response.
+     * Add the payload to the response.
      *
-     * @param  string  $view
-     * @param  array  $data
-     * @param  array $mergeData
+     * @param  mixed  $payload
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return $this
      */
-    protected function view($view, $data = [], $mergeData = [])
+    public function withPayload($payload)
     {
-        return $this->view->make($view, $data, $mergeData);
+        $this->payload = $payload instanceof AbstractPayload ? $payload->getData() : $payload;
+
+        return $this;
     }
 
     /**
-     * Send a redirect response.
+     * Add the request to the response.
      *
-     * @param  string  $path
-     * @param  int  $status
-     * @param  array $headers
-     * @param  bool  $secure
+     * @param  \Illuminate\Http\Request  $request
      *
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     * @return $this
      */
-    protected function redirect(string $path = null, $status = 302, array $headers = [], $secure = null)
+    public function withRequest(Request $request)
     {
-        if (is_null($path)) {
-            return $this->redirector;
-        }
+        $this->request = $request;
 
-        return $this->redirector->to($path, $status, $headers, $secure);
+        return $this;
     }
 
     /**
@@ -113,19 +78,5 @@ abstract class Responder
     protected function flash($message, array $options = [])
     {
         return $this->flash->add($message, $options);
-    }
-
-    /**
-     * Send a json response.
-     *
-     * @param  mixed  $content
-     * @param  int  $status
-     * @param  array  $headers
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function json($content = '', $status = 500, array $headers = [])
-    {
-        return $this->response->json($content, $status, $headers);
     }
 }

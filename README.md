@@ -8,6 +8,9 @@
 
 ![Bright Components](https://s3.us-east-2.amazonaws.com/bright-components/bc_large.png "Bright Components")
 
+### Disclaimer
+The packages under the BrightComponents namespace are basically a way for me to avoid copy/pasting simple functionality that I like in all of my projects. There's nothing groundbreaking here, just a little extra functionality for form requests, controllers, custom rules, services, etc.
+
 Responders are a great way to make your controllers slim and keep the code related to responses in one place. The general idea is based on the "R" in [ADR - Action Domain Responder](http://paul-m-jones.com/archives/5970), by [Paul M. Jones](https://twitter.com/pmjones).
 
 For example, in your controller:
@@ -87,7 +90,22 @@ You can install the package via composer:
 ```bash
 composer require bright-components/responders
 ```
+
+> Note: Until version 1.0 is released, major features and bug fixes may be added between minor versions. To maintain stability, I recommend a restraint in the form of "^0.1.0". This would take the form of:
+```bash
+composer require "bright-components/responders:^0.1.0"
+```
+
 Laravel versions > 5.6.0 will automatically identify and register the service provider.
+
+If you are using an older version of Laravel, add the package service provider to your config/app.php file, in the 'providers' array:
+```php
+'providers' => [
+    //...
+    BrightComponents\Services\ResponderServiceProvider::class,
+    //...
+];
+```
 
 Then, run:
 ```bash
