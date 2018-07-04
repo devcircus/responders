@@ -3,10 +3,8 @@
 namespace BrightComponents\Responder;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
 use DevMarketer\LaraFlash\LaraFlash;
-use Illuminate\View\Factory as View;
-use Illuminate\Routing\ResponseFactory as Response;
+use BrightComponents\Common\Payloads\AbstractPayload;
 
 abstract class Responder
 {
@@ -18,34 +16,6 @@ abstract class Responder
     protected $payload;
 
     /**
-     * View factory for returning views.
-     *
-     * @var \Illuminate\View\Factory
-     */
-    protected $view;
-
-    /**
-     * Session store for interacting with session.
-     *
-     * @var \Illuminate\Session\Store
-     */
-    protected $session;
-
-    /**
-     * Response factory for generating responses.
-     *
-     * @var /Illuminate\Contracts\Routing\ResponseFactory
-     */
-    protected $response;
-
-    /**
-     * Redirector for generating redirects.
-     *
-     * @var \Illuminate\Routing\Redirector
-     */
-    protected $redirector;
-
-    /**
      * Laraflash for flashing to session.
      *
      * @var \DevMarketer\LaraFlash\LaraFlash
@@ -55,17 +25,13 @@ abstract class Responder
     /**
      * Construct a new base Responder.
      *
-     * @param  \Illuminate\View\Factory $view
-     * @param  \Illuminate\Contracts\Routing\ResponseFactory $response
-     * @param  \DevMarketer\LaraFlash\LaraFlash $flash
-     * @param  \Illuminate\Routing\Redirector $redirector
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \DevMarketer\LaraFlash\LaraFlash  $flash
      */
-    public function __construct(View $view, Response $response, LaraFlash $flash, Redirector $redirector)
+    public function __construct(Request $request, LaraFlash $flash)
     {
-        $this->view = $view;
+        $this->request = $request;
         $this->flash = $flash;
-        $this->response = $response;
-        $this->redirector = $redirector;
     }
 
     /**
@@ -84,42 +50,23 @@ abstract class Responder
      */
     public function withPayload($payload)
     {
-        $this->payload = $payload;
+        $this->payload = $payload instanceof AbstractPayload ? $payload->getData() : $payload;
 
         return $this;
     }
 
     /**
-     * Send a view response.
+     * Add the request to the response.
      *
-     * @param  string  $view
-     * @param  array  $data
-     * @param  array $mergeData
+     * @param  \Illuminate\Http\Request  $request
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return $this
      */
-    protected function view($view, $data = [], $mergeData = [])
+    public function withRequest(Request $request)
     {
-        return $this->view->make($view, $data, $mergeData);
-    }
+        $this->request = $request;
 
-    /**
-     * Send a redirect response.
-     *
-     * @param  string  $path
-     * @param  int  $status
-     * @param  array $headers
-     * @param  bool  $secure
-     *
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
-     */
-    protected function redirect(string $path = null, $status = 302, array $headers = [], $secure = null)
-    {
-        if (is_null($path)) {
-            return $this->redirector;
-        }
-
-        return $this->redirector->to($path, $status, $headers, $secure);
+        return $this;
     }
 
     /**
@@ -131,19 +78,5 @@ abstract class Responder
     protected function flash($message, array $options = [])
     {
         return $this->flash->add($message, $options);
-    }
-
-    /**
-     * Send a json response.
-     *
-     * @param  mixed  $content
-     * @param  int  $status
-     * @param  array  $headers
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function json($content = '', $status = 500, array $headers = [])
-    {
-        return $this->response->json($content, $status, $headers);
     }
 }
