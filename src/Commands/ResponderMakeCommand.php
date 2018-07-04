@@ -33,7 +33,7 @@ class ResponderMakeCommand extends GeneratorCommand
      */
     public function handle()
     {
-        if (false === parent::handle() && !$this->option('force')) {
+        if (false === parent::handle() && ! $this->option('force')) {
             return;
         }
     }
@@ -45,7 +45,7 @@ class ResponderMakeCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/stubs/responder.stub';
+        return __DIR__.'/stubs/responder.stub';
     }
 
     /**
@@ -59,7 +59,7 @@ class ResponderMakeCommand extends GeneratorCommand
     {
         $responderNamespace = Config::get('responder.namespace', 'Http\\Responders');
 
-        return $rootNamespace . '\\' . $responderNamespace;
+        return $rootNamespace.'\\'.$responderNamespace;
     }
 
     /**
@@ -86,7 +86,7 @@ class ResponderMakeCommand extends GeneratorCommand
             return str_finish($input, $suffix);
         }
 
-        return $input . $suffix;
+        return $input.$suffix;
     }
 
     /**
