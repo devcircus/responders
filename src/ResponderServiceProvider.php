@@ -13,7 +13,7 @@ class ResponderServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/responders.php' => config_path('responders.php'),
+            __DIR__.'/../config/responders.php' => config_path('responders.php'),
         ]);
 
         $this->commands([
