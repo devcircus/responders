@@ -27,6 +27,8 @@
         "devmarketer/laraflash": "1.3.*"
     },
     "require-dev": {
+        "mockery/mockery": "0.9.*",
+        "orchestra/testbench": "~3.5",
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {

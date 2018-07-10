@@ -12,7 +12,7 @@ class ResponderMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:responder';
+    protected $name = 'bright:responder';
 
     /**
      * The console command description.
