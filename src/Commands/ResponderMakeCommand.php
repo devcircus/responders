@@ -8,11 +8,11 @@ use Illuminate\Console\GeneratorCommand;
 class ResponderMakeCommand extends GeneratorCommand
 {
     /**
-     * The console command name.
+     * The name and signature of the console command.
      *
      * @var string
      */
-    protected $name = 'bright:responder';
+    protected $signature = 'bright:responder {name}';
 
     /**
      * The console command description.
