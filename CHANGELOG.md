@@ -14,3 +14,9 @@ All notable changes to BrightComponents/Responders will be documented in this fi
 - Add request and payload properties with accessors and setters to Responder.
 - Update config options.
 - Update README.
+
+## 0.1.2 - 2018-07-15
+
+- Change command namespace to 'bright' from 'make'.
+- Start adding tests.
+- Replace command 'name' property with 'signature' property.
