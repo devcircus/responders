@@ -9,7 +9,7 @@ class CommandTest extends IntegrationTestCase
     /** @test */
     public function bright_responder_command_makes_responder_with_correct_respond_method()
     {
-        Artisan::call('bright:responder', ['name' => 'MyResponder']);
+        Artisan::call('adr:responder', ['name' => 'MyResponder']);
 
         include_once base_path().'/app/Http/Responders/MyResponder.php';
 
