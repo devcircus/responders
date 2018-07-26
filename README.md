@@ -138,7 +138,7 @@ To begin using BrightComponents/Responders, simply follow the instructions above
 To generate an IndexResponder for Posts, as in the example above, enter the following command into your terminal:
 
 ```bash
-php artisan make:responder Post\\IndexResponder
+php artisan adr:responder Post\\IndexResponder
 ```
 
 Then add the responder as a dependency to your controller and call the ```respond``` method. This method expects an instance of ```Illuminate\Http\Request``` and an optional $data object:

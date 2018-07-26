@@ -12,7 +12,7 @@ class ResponderMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'bright:responder {name}';
+    protected $signature = 'adr:responder {name}';
 
     /**
      * The console command description.
