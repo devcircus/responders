@@ -1,7 +1,7 @@
 {
     "name": "bright-components/responders",
     "description": "Responder Implementation for Laravel Projects",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "keywords": [
         "bright-components",
         "responders"
