@@ -24,3 +24,7 @@ All notable changes to BrightComponents/Responders will be documented in this fi
 ## 0.1.3 - 2018-07-26
 
 - With the new bright-components/adr package, we're renaming the command namespace to "adr" from "bright".
+
+## 1.0.0-beta.1 - 2018-09-02
+
+- First beta release. Features locked.
