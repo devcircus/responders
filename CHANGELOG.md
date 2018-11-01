@@ -35,3 +35,7 @@ All notable changes to BrightComponents/Responders will be documented in this fi
 -   Remove individual illuminate components.
 -   Require laravel/framework 5.7.\*
 -   Bump orchestra/testbench version to ~3.7
+
+## 1.0.0-beta.1.2 - 2018-01-01
+
+-   Make Responder implement the Responsable interface

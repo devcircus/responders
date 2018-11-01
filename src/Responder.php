@@ -4,9 +4,10 @@ namespace BrightComponents\Responder;
 
 use Illuminate\Http\Request;
 use DevMarketer\LaraFlash\LaraFlash;
+use Illuminate\Contracts\Support\Responsable;
 use BrightComponents\Common\Payloads\AbstractPayload;
 
-abstract class Responder
+abstract class Responder implements Responsable
 {
     /**
      * The response payload.
@@ -32,6 +33,18 @@ abstract class Responder
     {
         $this->request = $request;
         $this->flash = $flash;
+    }
+
+    /**
+     * Create an HTTP response that represents the object.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function toResponse($request)
+    {
+        return $this->respond();
     }
 
     /**
