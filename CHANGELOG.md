@@ -43,3 +43,7 @@ All notable changes to BrightComponents/Responders will be documented in this fi
 ## 1.0.0-beta.1.3 - 2019-02-28
 
 -   Update for compatibility with Laravel 5.8
+
+## 1.0.0-beta.1.4 - 2019-03-21
+
+-   Require bright-components/common for payloads.
