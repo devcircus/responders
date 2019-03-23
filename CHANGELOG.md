@@ -47,3 +47,7 @@ All notable changes to BrightComponents/Responders will be documented in this fi
 ## 1.0.0-beta.1.4 - 2019-03-21
 
 -   Require bright-components/common for payloads.
+
+## 1.0.0 - 2019-03-23
+
+-   Initial stable release.
