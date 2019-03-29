@@ -51,3 +51,9 @@ All notable changes to BrightComponents/Responders will be documented in this fi
 ## 1.0.0 - 2019-03-23
 
 -   Initial stable release.
+
+## 2.0.0 - 2019-03-28
+
+-   A dependency bump due to logic change in the BrightComponents/Common package could cause bc breaks.
+    - Bump version to 2.0.
+    - Update .travis.yml
