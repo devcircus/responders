@@ -5,7 +5,6 @@ namespace BrightComponents\Responder;
 use Illuminate\Http\Request;
 use DevMarketer\LaraFlash\LaraFlash;
 use Illuminate\Contracts\Support\Responsable;
-use BrightComponents\Common\Payloads\AbstractPayload;
 
 abstract class Responder implements Responsable
 {
@@ -63,7 +62,7 @@ abstract class Responder implements Responsable
      */
     public function withPayload($payload)
     {
-        $this->payload = $payload instanceof AbstractPayload ? $payload->getData() : $payload;
+        $this->payload = $payload;
 
         return $this;
     }
